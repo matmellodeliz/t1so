@@ -16,6 +16,15 @@ void preenche(int mat1[][TAM], int mat2[][TAM]) {
     }
 }
 
+void processa(int mat1[][TAM], int mat2[][TAM], int mat3[][TAM]) {
+    int i, j;
+    for (int i = 0; i < TAM; i++) {
+        for (int j = 0; j < TAM; j++) {
+            mat3[i][j] = mat1[i][j] * mat2[i][j];
+        }
+    }
+}
+
 void imprime(int mat1[][TAM], int mat2[][TAM]) {
     for (int i = 0; i < TAM; i++) {
         for (int j = 0; j < TAM; j++) {
@@ -32,13 +41,26 @@ void imprime(int mat1[][TAM], int mat2[][TAM]) {
     }
 }
 
+void imprime_resultado(int mat3[][TAM]) {
+    for (int i = 0; i < TAM; i++) {
+        for (int j = 0; j < TAM; j++) {
+            printf("%d\t", mat3[i][j]);
+        }
+        printf("\n");
+    }
+}
+
 int main() {
     system("CLS");
     srand(time(NULL));  // Reseta a 'semente' da aleatoridade, fazendo que novos números aleatórios sejam escolhidos
-    int mat1[TAM][TAM], mat2[TAM][TAM];
+    int mat1[TAM][TAM], mat2[TAM][TAM], mat3[TAM][TAM];
 
     preenche(mat1, mat2);
     imprime(mat1, mat2);
+    processa(mat1, mat2, mat3);
+    printf("\n");
+    imprime_resultado(mat3);
+
     return 0;
 }
 
