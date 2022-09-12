@@ -46,9 +46,19 @@ int main(void)
     for (a = 0; a < n; a++) {
         for (b = 0; b < n; b++) {
             A[a][b] = rand() % 9 + 1;
-            B[a][b] = rand() % 9 + 1;
+            printf("%lf\t", A[a][b]);
         }
+        printf("\n");
     }
+    printf("\n");printf("\n");
+    for (a = 0; a < n; a++) {
+        for (b = 0; b < n; b++) {
+            B[a][b] = rand() % 9 + 1;
+            printf("%lf\t", B[a][b]);
+        }
+        printf("\n");
+    }
+    printf("\n");printf("\n");
     pthread_t threads[n];
     size_t i, k;
 
