@@ -1,3 +1,98 @@
+#include <stdio.h>
+#include <pthread.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#define N 3
+#define n 3
+
+struct v
+{
+    size_t i;
+    size_t j;
+};
+
+double A[N][N];
+double B[N][N];
+double C[N][N];
+
+static void * multiplication(void *arg){
+    struct v *data = (struct v *)arg;
+
+    size_t l;
+    for(l=0; l < N; l++)
+    {
+        size_t i=(data[l]).i;
+        size_t j=(data[l]).j;
+        double sum=0;
+        size_t d;
+
+        for (d = 0; d < N; d++)
+        {
+            sum = sum + A[i][d]*B[d][j];
+        }
+
+        C[i][j] = sum;
+        sum = 0;
+    }
+    return 0;
+}
+
+int main(void)
+{
+    srand(time(NULL));
+    int a, b;
+    for (a = 0; a < n; a++) {
+        for (b = 0; b < n; b++) {
+            A[a][b] = rand() % 9 + 1;
+            B[a][b] = rand() % 9 + 1;
+        }
+    }
+    pthread_t threads[n];
+    size_t i, k;
+
+    struct v **data;
+    data = (struct v **)malloc(n * sizeof(struct v*));
+
+    for(i = 0; i < n; i++)
+    {
+        data[i] = (struct v *)malloc(n * sizeof(struct v));
+
+        for(k = 0; k < n; k++)
+        {
+            data[i][k].i = i;
+            data[i][k].j = k;
+        }
+
+        pthread_create(&threads[i], NULL, multiplication, data[i]);
+    }
+
+    for(i = 0; i < n; i++)
+    {
+        pthread_join(threads[i], NULL);
+    }
+
+    for (i = 0; i < N; i++)
+    {
+        for (k = 0; k < N; k++)
+        {
+            printf("%lf\t", C[i][k]);
+        }
+
+        printf("\n");
+
+        free(data[i]);
+    }
+
+    free(data);
+
+    return 0;
+}
+
+
+
+/**<
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,7 +147,7 @@ void imprime_resultado(int mat3[][TAM]) {
 
 int main() {
     system("CLS");
-    srand(time(NULL));  // Reseta a 'semente' da aleatoridade, fazendo que novos números aleatórios sejam escolhidos
+    srand(time(NULL));  // Reseta a 'semente' da aleatoridade, fazendo que novos nÃºmeros aleatÃ³rios sejam escolhidos
     int mat1[TAM][TAM], mat2[TAM][TAM], mat3[TAM][TAM];
 
     preenche(mat1, mat2);
@@ -63,6 +158,7 @@ int main() {
 
     return 0;
 }
+ */
 
 // #include <locale.h>
 // #include <stdio.h>
@@ -95,9 +191,9 @@ int main() {
 //     setlocale(LC_ALL, "Portuguese");
 //     int a[TAM][TAM], b[TAM][TAM], mul[TAM][TAM], linha, coluna, i, j, k;
 
-//     printf("Digite o número de linhas: ");
+//     printf("Digite o nÃºmero de linhas: ");
 //     scanf("%d", &linha);
-//     printf("Digite o número de colunas: ");
+//     printf("Digite o nÃºmero de colunas: ");
 //     scanf("%d", &coluna);
 
 //     printf("Digite os elementos da segunda matriz\n");
@@ -107,8 +203,8 @@ int main() {
 //         }
 //     }
 
-//     // Realiza a multiplicação
-//     printf("Matriz final da multiplicação: \n");
+//     // Realiza a multiplicaÃ§Ã£o
+//     printf("Matriz final da multiplicaÃ§Ã£o: \n");
 //     for (i = 0; i < linha; i++) {
 //         for (j = 0; j < coluna; j++) {
 //             mul[i][j] = 0;
