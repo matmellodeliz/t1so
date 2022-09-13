@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <stdlib.h>
- #define TAM 10
+ #define TAM 100
 
 int a[TAM], swapped = 0;
 pthread_t thread[TAM];
@@ -11,7 +11,7 @@ void criarVetor() {
 	srand(time(NULL));
 	int i;
 	for(i = 0; i < TAM; i++)
-		a[i] = rand() % TAM;
+		a[i] = rand() % 9+1;
 
 	printf("Vetor Original\n");
 	for(i = 0; i < TAM; i++)

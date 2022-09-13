@@ -4,8 +4,8 @@
 #include <string.h>
 #include <time.h>
 
-#define N 3
-#define n 3
+#define N 30
+#define n 30
 
 struct v
 {

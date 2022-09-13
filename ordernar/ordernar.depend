@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1663032259 source:d:\faculdade\2 período\sistemas operacionais - segunda\ordernar\main.c
+1663095295 source:d:\faculdade\2 período\sistemas operacionais - segunda\ordernar\main.c
 	<stdio.h>
 	<unistd.h>
 	<pthread.h>
