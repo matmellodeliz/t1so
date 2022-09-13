@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1663011916 source:d:\faculdade\2 período\sistemas operacionais - segunda\threads\threads\main.cpp
+	<stdio.h>
+	<pthread.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+
+1663015999 source:d:\faculdade\2 período\sistemas operacionais - segunda\threads\main.cpp
+	<stdio.h>
+	<pthread.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+
